@@ -29,43 +29,25 @@
                       <input type="hidden" id="billing:address_id">
                       <ul>
                         <li>
+                          {% for field in form %}
+                          {% if forloop.counter0 == 4 %}
+                          <div class="customer-name">
+                            <div class="input-box name-firstname" style="width: 100%;">
+                              <label for="{{ field.id }}"> {{ field.label }}<span class="required">*</span></label>
+                              <br>
+                              {{ field }}
+                            </div>
+                          </div>
+                          {% else %}
                           <div class="customer-name">
                             <div class="input-box name-firstname">
-                              <label for="billing:firstname"> First Name<span class="required">*</span></label>
+                              <label for="{{ field.id }}"> {{ field.label }}<span class="required">*</span></label>
                               <br>
-                              <input type="text" id="billing:firstname" name="" title="First Name" class="input-text ">
-                            </div>
-                            <div class="input-box name-email">
-                              <label for="billing:email"> Email Address <span class="required">*</span> </label>
-                              <br>
-                              <input type="text" id="billing:email" name="" title="Email Address" class="input-text">
+                              {{ field }}
                             </div>
                           </div>
-                        </li>
-                        <li>
-                          <div class="input-box">
-                            <label for="billing:company">Company</label>
-                            <br>
-                            <input type="text" id="billing:company" name="" title="Company" class="input-text">
-                          </div>
-                          <div class="input-box">
-                            <label for="billing:telephone">Telephone <span class="required">*</span></label>
-                            <br>
-                            <input type="text" name="" id="billing:telephone" title="Telephone" class="input-text">
-                          </div>
-                        </li>
-                        <li>
-                          <label for="billing:street1">Address <span class="required">*</span></label>
-                          <br>
-                          <input type="text" title="Street Address" name="" class="input-text">
-                        </li>
-                        <li class="">
-                          <label for="comment">Comment<em class="required">*</em></label>
-                          <br>
-                          <div style="float:none" class="">
-                            <textarea name="" id="comment" title="Comment" class="input-text" cols="5"
-                              rows="3"></textarea>
-                          </div>
+                          {% endif %}
+                          {% endfor %}
                         </li>
                       </ul>
                     </fieldset>

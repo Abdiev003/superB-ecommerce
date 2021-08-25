@@ -44,6 +44,32 @@ class ContactForm(forms.ModelForm):
             'maxlength': 13,
         })
     )
+    address = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'input-text',
+            'id': 'billing:address',
+            'title': 'Street Address',
+            'name': 'billing:address',
+            'maxlength': 254,
+        })
+    )
+    comment = forms.CharField(
+        required=True,
+        widget=forms.Textarea(attrs={
+            'class': 'input-text',
+            'id': 'comment',
+            'title': 'Comment',
+            'name': 'comment',
+            'cols': '5',
+            'rows': '3'
+        })
+    )
+
+    class Meta:
+        model = Contact
+        fields = ('first_name', 'email', 'company',
+                 'telephone', 'address', 'comment')
 
 
 class SubscribeForm(forms.ModelForm):

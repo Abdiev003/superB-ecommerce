@@ -3,8 +3,8 @@ from django.contrib.messages import success, error
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 
-from core.models import Subscribe
-from core.forms import SubscribeForm
+from core.models import Subscribe, Contact
+from core.forms import SubscribeForm, ContactForm
 
 
 def index(request):
@@ -15,8 +15,16 @@ def about(request):
     return render(request, 'about_us.html')
 
 
-class ContactView(TemplateView):
+class ContactView(CreateView):
     template_name = 'contact_us.html'
+    form_class = ContactForm
+    model = Contact
+    success_url = reverse_lazy('core:contact-us')
+
+    def form_valid(self, form):
+        success(
+            self.request, 'We appreciate you contacting us/ [SuperB]. One of our colleagues will get back in touch with you soon!Have a great day!')
+        return super().form_valid(form)
 
 
 class SubscribeView(CreateView):
