@@ -43,3 +43,7 @@ class SubscribeView(CreateView):
 
     def get_success_url(self):
         return self.request.META.get("HTTP_REFERER")
+
+
+class FAQView(TemplateView):
+    template_name = 'faq.html'
