@@ -1,0 +1,9 @@
+{% autoescape off %}
+Hello {{ user.first_name }} {{ user.last_name }}
+
+You registered an account on [customer portal], before being able to use your account you need to verify that this is
+your email address by clicking here: <a
+    href="{{ site_adress }}{% url 'accounts:activate' uidb64=uid token=token %}">Click here</a>
+
+Ali Abdiyev, [SuperB]
+{% endautoescape %}

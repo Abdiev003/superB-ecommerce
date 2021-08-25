@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Register | {% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/internal.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/flexslider.css' %}">
+<style>
+    .errorlist {
+        margin: 5px 0 0 10px !important;
+    }
+    .d-flex {
+        display: flex;
+    }
+    .alert {
+        padding: 5px 30px !important;
+    }
+    .glyphicon {
+        top: 8px;
+    }
+</style>
+{% endblock %}
+
+{% block body-class %}"customer-account-login inner-page"{% endblock %}
+{% block content %}
+<div id="page">
+
+    <!-- Main Container -->
+    <section class="main-container col1-layout bounceInUp animated">
+        <div class="main container">
+            <div class="account-login">
+                <div class="page-title">
+                    <h1>Create an Account</h1>
+                </div>
+                <fieldset class="col2-set">
+                    <legend>Create an Account</legend>
+                    <div class="col-1 new-users"><strong>New Customers</strong>
+                        <div class="content">
+                            <p>By creating an account with our store, you will be able to move through the checkout
+                                process faster,
+                                store multiple shipping addresses, view and track your orders in your account and more.
+                            </p>
+                            <div class="buttons-set">
+                                <button class="button create-account"><a href="{% url 'accounts:login' %}"
+                                        style="color: #fff;">I already have an account</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 registered-users"><strong>Registered Customers</strong>
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="content">
+                                <p>If you have an account with us, please log in.</p>
+                                <ul class="form-list">
+                                    {% for field in form %}
+                                    <li>
+                                        <label for="email">{{ field.label }} <span class="required">*</span></label>
+                                        <br>
+                                        {{ field }}
+                                        {% if field.errors %}
+                                        <div class="alert alert-danger d-flex" role="alert">
+                                            <span class="glyphicon glyphicon-exclamation-sign"
+                                                aria-hidden="true"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{ field.errors }}
+                                        </div>
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <p class="required">* Required Fields</p>
+                                <div class="buttons-set">
+                                    <button id="send2" name="send2" type="submit"
+                                        class="button login"><span>Register</span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </fieldset>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </section>
+    <!-- Main Container End -->
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'js/parallax.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.flexslider.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/cloud-zoom.js' %}"></script>
+{% endblock %}
